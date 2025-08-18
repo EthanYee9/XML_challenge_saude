@@ -72,8 +72,7 @@ Error details: Element '{urn:fsa-gov-uk:MER:FSA029:4}PartnershipsSoleTraders': T
 This is due to the schema specifying one `choice` for `Capital` (line 132 in the schema), however, the sample has all three options present.
 
 ### 2. How would you fix the file to pass the schema validation?
-To fix this error you would need to remove two of the options under `choice`, leaving one left.
-
+For this specific example, to fix this error you would need to remove two of the options under `choice`, leaving one left. However, more generally you can check data type mismatsches, missing elements, unexpected elements, namespace mismatches, etc.
 
 ### 3. Why do you think the regulator has included valida and invalid siles in their examples?
 The regulator has included a valid and invalid files in their examples so devlopers can test their validation scripts. Additionally, the invalid file may highlight so common errors made in submissions.

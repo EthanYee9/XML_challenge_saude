@@ -1,6 +1,7 @@
 from lxml import etree
 from io import BytesIO
 import os 
+import argparse
 
 def FSA029_validation(sample_path, schema_folder):
     base_path = os.path.abspath(schema_folder)
@@ -36,4 +37,9 @@ def FSA029_validation(sample_path, schema_folder):
         print(f"Error details: {e}")
 
 if __name__ == "__main__":
-    FSA029_validation("Samples/FSA029-Sample-Full.xml", "Schemas")
+    parser = argparse.ArgumentParser(description="Validate an FSA029 XML submission")
+    parser.add_argument("submission", help="Path to XML submission file")
+    parser.add_argument("schema_folder", help="Path to FSA029 schema folder")
+
+    args = parser.parse_args()
+    FSA029_validation(args.submission, args.schema_folder)

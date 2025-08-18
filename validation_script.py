@@ -7,9 +7,14 @@ def FSA029_validation(sample_path, schema_folder):
 
     # Editing schema in memory 
     with open(f"{schema_folder}/FSA029-Schema.xsd", "rb") as file:
-        schema_doc = file.read()
-        altered_schema = schema_doc.replace(b"../../CommonTypes/v14/CommonTypes-Schema.xsd", b"CommonTypes-Schema.xsd")
+        schema_doc = etree.parse(file)
+    
+    for include_elem in schema_doc.findall(".//{http://www.w3.org/2001/XMLSchema}include"):
+        if include_elem.get("schemaLocation") == "../../CommonTypes/v14/CommonTypes-Schema.xsd":
+            include_elem.set("schemaLocation", "CommonTypes-Schema.xsd")
 
+    # Create altered schema object
+    altered_schema = etree.tostring(schema_doc, pretty_print=True, xml_declaration=True, encoding="UTF-8")
     altered_schema_doc = BytesIO(altered_schema)
 
     # Parsing schema 

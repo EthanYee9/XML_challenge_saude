@@ -28,10 +28,12 @@ def FSA029_validation(sample_path, schema_folder):
         raise Exception("XML file is not well-formed")
 
     # Validating   
-    if xmlschema.validate(sample):
+    try:
+        xmlschema.assert_(sample)
         print("Submission has been correctly validated against FSA029 schema")
-    else:
+    except Exception as e:
         print("Submission has failed validation against FSA029 schema") 
+        print(f"Error details: {e}")
 
 if __name__ == "__main__":
-    FSA029_validation("Samples/FSA029-Sample-Valid.xml", "Schemas")
+    FSA029_validation("Samples/FSA029-Sample-Full.xml", "Schemas")

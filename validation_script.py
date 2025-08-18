@@ -23,7 +23,7 @@ def FSA029_validation(sample_path, schema_folder):
 
     # Parsing sample
     try:
-        sample =  etree.parse(sample_path)
+        sample = etree.parse(sample_path)
     except:
         raise Exception("XML file is not well-formed")
 

@@ -31,9 +31,9 @@ def FSA029_validation(sample_path, schema_folder):
     # Validating   
     try:
         xmlschema.assert_(sample)
-        print("Submission has been correctly validated against FSA029 schema")
+        print("Submission has been correctly validated against the FSA029 schema")
     except Exception as e:
-        print("Submission has failed validation against FSA029 schema") 
+        print("Submission has failed validation against the FSA029 schema") 
         print(f"Error details: {e}")
 
 if __name__ == "__main__":
